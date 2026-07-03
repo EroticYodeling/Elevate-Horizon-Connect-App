@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Switch } from 'react-native';
 import styles from '../Styles';
 import { getColors } from './theme';
-
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Settings({ navigation, darkMode, setDarkMode }) {
 
@@ -13,54 +14,59 @@ export default function Settings({ navigation, darkMode, setDarkMode }) {
       styles.mainContainer,
       { backgroundColor: colors.bg }
     ]}>
-      <Text style={styles.title}>Settings</Text>
 
-      <View style={styles.settingItem}>
-        <Text style={styles.settingText}>Screen Brightness: </Text>
-        <Image
-          source={require('../assets/brightnessSlider.png')}
-          style={styles.icon}
-        />
-      </View>
+      <View style={{ width: '90%', alignSelf: 'center' }}>
 
-      <View style={styles.settingItem}>
-        <Text style={styles.settingText}>Adjust Text Size: </Text>
-        <Image
-          source={require('../assets/fontSizer.png')} 
-          style={styles.icon}
-        />
-      </View>
-
-      <View style={styles.settingItem}>
-        <Text style={styles.settingText}>Sound:</Text>
-        <Image
-          source={require('../assets/soundControl.png')}
-          style={styles.icon}
-        />
-      </View>
-
-      <View>
-
-        <Text style={{ color: colors.text }}>
-          Dark Mode
+        <Text style={[styles.title, { color: colors.text }]}>
+          Settings
         </Text>
 
-        <Switch
-          value={darkMode}
-          onValueChange={setDarkMode}
-        />
+        <View style={styles.settingItem}>
+          <Text style={[styles.settingText, { color: colors.text }]}>
+            Screen Brightness (WIP):
+          </Text>
+          <TouchableOpacity>
+            <Ionicons name="sunny" size={24} color={colors.text} />
+          </TouchableOpacity>
+       </View>
+
+        <View style={styles.settingItem}>
+          <Text style={[styles.settingText, { color: colors.text }]}>
+            Adjust Text Size (WIP):
+          </Text>
+          <TouchableOpacity>
+            <Ionicons name="text" size={24} color={colors.text} />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.settingItem}>
+          <Text style={[styles.settingText, { color: colors.text }]}>
+            Sound (WIP):
+          </Text>
+          <TouchableOpacity>
+            <Ionicons name="volume-high" size={24} color={colors.text} />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.settingItem}>
+          <Text style={[styles.settingText, { color: colors.text }]}>
+            Dark Mode
+          </Text>
+
+          <Switch
+            value={darkMode}
+            onValueChange={setDarkMode}
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.buttonText}>RETURN HOME</Text>
+        </TouchableOpacity>
 
       </View>
 
-
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}> RETURN HOME </Text>
-      </TouchableOpacity>
     </View>
   );
-
-  
 }

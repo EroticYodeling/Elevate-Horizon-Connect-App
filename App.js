@@ -25,6 +25,7 @@ export default function App() {
         screenOptions={({ navigation }) => ({
           headerStyle: styles.header,
           headerTitleStyle: styles.headerTitle,
+          headerTintColor: '#ffffff',
           headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
               <Image

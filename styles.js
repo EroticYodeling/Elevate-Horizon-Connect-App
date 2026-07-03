@@ -19,7 +19,7 @@ export default StyleSheet.create({
     backgroundColor: '#ffffff',
     fontFamily: 'Trebuchet',
     flex: 1,
-    alignItems: 'stretch',
+    //alignItems: 'stretch',//
     
   },
   container: {
@@ -70,6 +70,7 @@ export default StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
   },
   buttonText: {
     color: '#ffffff',
@@ -107,6 +108,11 @@ export default StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#D9D9D9',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginVertical: 5,
   },
   settingText: {
     fontSize: 16,
@@ -115,10 +121,10 @@ export default StyleSheet.create({
     textAlign: 'left',
   },
   icon: {
-    width: 200,
+    width: 100,
     height: 50,
     resizeMode: 'contain',
-    marginRight: 10,
+    //marginRight: 10,//
   },
   imageContainer: {
     flexDirection: 'row',
@@ -137,6 +143,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000000',
     borderRadius: 10,
+    borderTopWidth: '#333',
   },
   navText: {
     color: '#ffffff',
@@ -144,11 +151,12 @@ export default StyleSheet.create({
 
   },
   navButton: {
-    padding: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: '#888',
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
+    //backgroundColor: '#ffffff',//
+    borderRadius: 20,
   },
 
   subtitle: {
@@ -176,12 +184,17 @@ export default StyleSheet.create({
   },
 
   eventCard: {
-    width: '90%',
+    width: '100%',
     backgroundColor: '#fff',
     borderRadius: 15,
     padding: 12,
     marginBottom: 20,
     alignItems: 'center',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: {width: 0, height: 3},
   },
 
   eventTitle: {
@@ -190,7 +203,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 5,
     marginBottom: 4,
-    color: '#666',
+    color: '#fffff',
   },
 
   eventTime: {

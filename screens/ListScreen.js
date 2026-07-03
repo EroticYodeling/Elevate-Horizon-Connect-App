@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import {
   Text,
@@ -10,7 +11,8 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import alert from '../alert';
 import styles from '../Styles';
-import {getColors} from './theme';
+import { getColors } from './theme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TaskList({ navigation, darkMode }) {
   const colors = getColors(darkMode);
@@ -18,19 +20,15 @@ export default function TaskList({ navigation, darkMode }) {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [description, setDescription] = useState('');
-
-
   const [tasks, setTasks] = useState([]);
-  const [searchText, setSearchText] = useState(''); /*Creates a variable that saves what user types in search bar */
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     loadTasks();
   }, []);
 
-  const filteredTasks = tasks.filter((item) =>  /*Looks through events, converts to lowercase and keeps matching events */
-    item.eventName
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
+  const filteredTasks = tasks.filter((item) =>
+    item.eventName.toLowerCase().includes(searchText.toLowerCase())
   );
 
   const saveTasks = async (newTasks) => {
@@ -53,30 +51,20 @@ export default function TaskList({ navigation, darkMode }) {
   };
 
   const handleAddTask = () => {
-    /* Validation - check if all fields are filled*/
     if (
       id.trim() !== '' &&
       eventName.trim() !== '' &&
-      eventDate.trim() !== '' &&      
+      eventDate.trim() !== '' &&
       description.trim() !== ''
     ) {
-      const newTask = {
-        id,
-        eventName,
-        eventDate,
-        description
-      };
-
+      const newTask = { id, eventName, eventDate, description };
       const newTasks = tasks.concat(newTask);
       setTasks(newTasks);
       saveTasks(newTasks);
-
-      /* Reset form fields*/
       setId('');
       setEventName('');
       setEventDate('');
       setDescription('');
-
       alert('Success', 'Event has been added successfully.');
     } else {
       return alert('Missing Fields', 'Please fill out all the fields.');
@@ -99,156 +87,139 @@ export default function TaskList({ navigation, darkMode }) {
       'Delete Event',
       'Are you sure you want to delete ' + tasks[index].eventName + '?',
       [
-        {
-          text: 'Yes',
-          onPress: () => deleteTask(index),
-        },
-        {
-          text: 'No',
-        },
+        { text: 'Yes', onPress: () => deleteTask(index) },
+        { text: 'No' },
       ]
     );
   };
 
   return (
-    <ScrollView>
-      
-        <View style={[
-          styles.mainContainer,
-          { backgroundColor: colors.bg }
-        ]}>
+    <View style={[styles.mainContainer, { backgroundColor: colors.bg }]}>
+      <ScrollView contentContainerStyle={{ paddingTop: 20, paddingBottom: 40 }}>
+        <View style={{ width: '90%', alignSelf: 'center' }}>
+          
+          <Text style={[styles.title, { color: colors.text }]}>Search Events</Text>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: colors.card,
+                color: colors.text,
+                borderColor: colors.text,
+              },
+            ]}
+            placeholder="Search For Events"
+            placeholderTextColor={darkMode ? '#aaa' : '#999'}
+            value={searchText}
+            onChangeText={(text) => setSearchText(text)}
+          />
 
-        <Text style={[styles.title, {color: colors.text}]}>Search Events</Text>
-        <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: colors.card,
-            color: colors.text,
-            borderColor: colors.text,
-          }
-        ]}
-        placeholder="Search For Events"
-        placeholderTextColor={darkMode ? '#aaa' : '#999'}
-          value={searchText}
-          onChangeText={(text) => setSearchText(text)}
-        />
-        <Text style={[styles.title, {color: colors.text}]}>Add New Event</Text>
-        <TextInput
+          <Text style={[styles.title, { color: colors.text }]}>Add New Event</Text>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: colors.card,
+                color: colors.text,
+                borderColor: colors.text,
+              },
+            ]}
+            placeholder="Enter Event ID"
+            placeholderTextColor={darkMode ? '#aaa' : '#999'}
+            value={id}
+            onChangeText={(text) => setId(text)}
+          />
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: colors.card,
+                color: colors.text,
+                borderColor: colors.text,
+              },
+            ]}
+            placeholder="Enter Event Name"
+            placeholderTextColor={darkMode ? '#aaa' : '#999'}
+            value={eventName}
+            onChangeText={(text) => setEventName(text)}
+          />
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: colors.card,
+                color: colors.text,
+                borderColor: colors.text,
+              },
+            ]}
+            placeholder="Enter Event Date"
+            placeholderTextColor={darkMode ? '#aaa' : '#999'}
+            value={eventDate}
+            onChangeText={(text) => setEventDate(text)}
+          />
+          <TextInput
+            style={[
+              styles.input,
+              {
+                backgroundColor: colors.card,
+                color: colors.text,
+                borderColor: colors.text,
+              },
+            ]}
+            placeholder="Enter Event Description"
+            placeholderTextColor={darkMode ? '#aaa' : '#999'}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
+          />
 
-        style={[
-          styles.input,
-          {
-            backgroundColor: colors.card,
-            color: colors.text,
-            borderColor: colors.text,
-          }
-        ]}
-        placeholder="Enter Event ID"
-        placeholderTextColor={darkMode ? '#aaa' : '#999'}
-          value={id}
-          onChangeText={(text) => setId(text)}
-        />
-        <TextInput
+          <TouchableOpacity style={styles.button} onPress={handleAddTask}>
+            <Text style={[styles.title, { color: colors.text }]}>ADD EVENT</Text>
+          </TouchableOpacity>
 
-        style={[
-          styles.input,
-          {
-            backgroundColor: colors.card,
-            color: colors.text,
-            borderColor: colors.text,
-          }
-        ]}
-        placeholder="Enter Event Name"
-        placeholderTextColor={darkMode ? '#aaa' : '#999'}
-          value={eventName}
-          onChangeText={(text) => setEventName(text)}
-        />
-        <TextInput
+          <FlatList
+            data={filteredTasks}
+            keyExtractor={(item, index) => index.toString()}
+            scrollEnabled={false}
+            renderItem={({ item, index }) => (
+              <View style={{ alignItems: 'center' }}>
+                <View style={styles.taskItem}>
+                  <Text style={[styles.taskField, { color: colors.text }]}>
+                    ID: <Text style={[styles.taskText, { color: colors.text }]}>{item.id}</Text>
+                  </Text>
 
-        style={[
-          styles.input,
-          {
-            backgroundColor: colors.card,
-            color: colors.text,
-            borderColor: colors.text,
-          }
-        ]}
-        placeholder="Enter Event Date"
-        placeholderTextColor={darkMode ? '#aaa' : '#999'}
-          value={eventDate}
-          onChangeText={(text) => setEventDate(text)}
-        />
-        <TextInput
+                  <Text style={[styles.taskField, { color: colors.text }]}>
+                    Event: <Text style={[styles.taskText, { color: colors.text }]}>{item.eventName}</Text>
+                  </Text>
 
-        style={[
-          styles.input,
-          {
-            backgroundColor: colors.card,
-            color: colors.text,
-            borderColor: colors.text,
-          }
-        ]}
-        placeholder="Enter Event Description"
-        placeholderTextColor={darkMode ? '#aaa' : '#999'}
-          value={description}
-          onChangeText={(text) => setDescription(text)}
-        />
+                  <Text style={[styles.taskField, { color: colors.text }]}>
+                    Date: <Text style={[styles.taskText, { color: colors.text }]}>{item.eventDate}</Text>
+                  </Text>
 
-        <TouchableOpacity style={styles.button} onPress={handleAddTask}>
-          <Text style={[styles.title, {color: colors.text}]}>ADD EVENT</Text>
-        </TouchableOpacity>
-        <FlatList
-          data={filteredTasks}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => (
-            <View style={styles.taskItem}>
-              
-              <Text style={[styles.taskField, { color: colors.text }]}>
-                ID: <Text style={[styles.taskText, { color: colors.text }]}>
-                  {item.id}
-                </Text>
-              </Text>
+                  <Text style={[styles.taskField, { color: colors.text }]}>
+                    Description: <Text style={[styles.taskText, { color: colors.text }]}>{item.description}</Text>
+                  </Text>
 
-              
-              <Text style={[styles.taskField, { color: colors.text }]}>
-                Event: <Text style={[styles.taskText, { color: colors.text }]}>
-                  {item.eventName}
-                </Text>
-              </Text>
-
-              
-              <Text style={[styles.taskField, { color: colors.text }]}>
-                Date: <Text style={[styles.taskText, { color: colors.text }]}>
-                  {item.eventDate}
-                </Text>
-              </Text>
-
-              
-              <Text style={[styles.taskField, { color: colors.text }]}>
-                Description: <Text style={[styles.taskText, { color: colors.text }]}>
-                  {item.description}
-                </Text>
-              </Text>
-
-            
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                  style={styles.actionButton}
-                  onPress={() => viewTaskHandler(item)}>
-                  <Text style={styles.actionText}>VIEW EVENT</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  key={index}
-                  style={styles.actionButton}
-                  onPress={() => deleteHandler(index)}>
-                  <Text style={styles.actionText}>DELETE EVENT</Text>
-                </TouchableOpacity>
+                  <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                      style={styles.actionButton}
+                      onPress={() => viewTaskHandler(item)}
+                    >
+                      <Text style={styles.actionText}>VIEW EVENT</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.actionButton}
+                      onPress={() => deleteHandler(index)}
+                    >
+                      <Text style={styles.actionText}>DELETE EVENT</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-            </View>
-          )}
-        />
-      </View>
-    </ScrollView>
+            )}
+          />
+
+        </View>
+      </ScrollView>
+    </View>
   );
 }
