@@ -1,29 +1,37 @@
 {
   "expo": {
-    "name": "01Bare",
-    "slug": "01Bare",
+    "name": "Task List",
+    "slug": "task-list",
+    "id": "18a543aa-d106-4134-ac8d-4080aa65122b",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "icon": "./assets/shop.jpg",
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/shop.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "repository": {
+      "type": "git",
+      "url": ""
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+        "foregroundImage": "./assets/shop.jpg",
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/shop.jpg"
     }
   }
 }
