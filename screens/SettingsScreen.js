@@ -61,4 +61,6 @@ export default function Settings({ navigation, darkMode, setDarkMode }) {
       </TouchableOpacity>
     </View>
   );
+
+  
 }

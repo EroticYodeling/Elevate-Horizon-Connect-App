@@ -28,13 +28,18 @@ export default function App() {
           headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
               <Image
-                source={require('./assets/shop.jpg')}
+                source={require('./assets/Elevate_Horizon_Logo_Only.png')}
                 style={styles.logo}
               />
             </TouchableOpacity>
           ),
-        })}>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        })}>        
+        <Stack.Screen name="Home">
+          {(props) => (
+            <HomeScreen {...props} darkMode={darkMode} />
+          )}
+        </Stack.Screen>
+
         <Stack.Screen name="Settings">
           {(props) => (
             <SettingsScreen
@@ -44,9 +49,18 @@ export default function App() {
               setDarkMode={setDarkMode}
             />
           )}
+        </Stack.Screen>       
+        <Stack.Screen name="TaskList">
+          {(props) => (
+            <ListScreen {...props} darkMode={darkMode} />
+          )}
+        </Stack.Screen>       
+        <Stack.Screen name="ViewScreen">
+          {(props) => (
+            <ViewScreen {...props} darkMode={darkMode} />
+          )}
         </Stack.Screen>
-        <Stack.Screen name="TaskList" component={ListScreen} />
-        <Stack.Screen name="ViewScreen" component={ViewScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

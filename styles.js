@@ -11,17 +11,16 @@ export default StyleSheet.create({
     color: '#ffffff',
   },
   logo: {
-    width: 100,
-    height: 70,
-    margin: 20,
+    width: 60,
+    height: 60,
+    margin: 10,
   },
   mainContainer: {
     backgroundColor: '#ffffff',
     fontFamily: 'Trebuchet',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    alignItems: 'stretch',
+    
   },
   container: {
     backgroundColor: '#ffffff',
@@ -129,4 +128,93 @@ export default StyleSheet.create({
     width: 250,
     height: 200,
   },
+  navBar: {
+    flexDirection: 'row',
+    justifyContent:'space-around',
+    width: '100%',
+    padding: 10,
+    backgroundColor: '#98A869',
+    borderWidth: 2,
+    borderColor: '#000000',
+    borderRadius: 10,
+  },
+  navText: {
+    color: '#ffffff',
+    textAlign: 'center',
+
+  },
+  navButton: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#888',
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+  },
+
+  subtitle: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+
+  eventPreviews: {
+    width: '100%',
+    padding: 15,
+    marginTop: 20,
+  },
+
+  previewText: {
+    fontSize: 16,
+    marginBottom: 15,
+  },
+
+  eventImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 12,
+    resizeMode: 'cover',
+    marginBottom: 10,
+  },
+
+  eventCard: {
+    width: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    padding: 12,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+
+  eventTitle: {
+    fontSize:18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 4,
+    color: '#666',
+  },
+
+  eventTime: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+  },
+  
+ 
+sectionTitle: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginTop: 15,
+  marginBottom: 10,
+  color: '#666'
+},
+
+divider: {
+  height: 1,
+  width: '90%',
+  backgroundColor: '#ccc',
+  marginVertical: 20,
+  color: '#666'
+},
+ 
+
 });

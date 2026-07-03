@@ -1,21 +1,183 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import styles from '../Styles';
 
-export default function HomeScreen({ navigation }) {
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import styles from '../Styles';
+import {getColors} from './theme'; 
+
+export default function HomeScreen({ navigation, darkMode }) {
+  const colors = getColors(darkMode);
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.title}>Welcome to Elevate Horizons Connect</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('EventsList')}>
-        <Text style={styles.buttonText}>Go to events!</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Settings')}>
-        <Text style={styles.buttonText}>Go to settings</Text>
-      </TouchableOpacity>
+    <View style={[
+      styles.mainContainer,
+      {backgroundColor: colors.bg}
+    ]}>
+
+      <ScrollView style={{ flex:1}}
+      contentContainerStyle={{paddingBottom: 80}}
+      showsVerticalScrollIndicator={true}
+      >
+
+        <View style={styles.eventPreviews}>
+
+          <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+            <Image
+              source={require('../assets/Woodworking_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Men's woodworking session
+            </Text>
+            <Text style={[styles.eventTime, { color: colors.text }]}>
+              03:00 PM · 01/01/2026
+            </Text>
+          </View>
+
+          
+          <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+            <Image
+              source={require('../assets/Yoga_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Yoga in the park
+            </Text>
+            <Text style={[styles.eventTime, {color: colors.text}]}>
+              05:00 PM · 01/01/2026
+            </Text>
+          </View>
+
+          
+          <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+
+            <Image
+              source={require('../assets/Hide_And_Seek_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Hide & seek session featuring Wally
+            </Text>
+            <Text style={[styles.eventTime, { color: colors.text }]}>
+              07:00 AM · 01/01/2026
+            </Text>
+          </View>
+
+                    <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+            <Image
+              source={require('../assets/Woodworking_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Men's woodworking session
+            </Text>
+            <Text style={[styles.eventTime, { color: colors.text }]}>
+              03:00 PM · 01/01/2026
+            </Text>
+          </View>
+
+                    <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+            <Image
+              source={require('../assets/Woodworking_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Men's woodworking session
+            </Text>
+            <Text style={[styles.eventTime, { color: colors.text }]}>
+              03:00 PM · 01/01/2026
+            </Text>
+          </View>
+
+                    <View style={[
+            styles.eventCard,
+            {backgroundColor: colors.card}
+          ]}>
+            <Image
+              source={require('../assets/Woodworking_Pexels_SD.jpg')}
+              style={styles.eventImage}
+            />
+            <Text style={[styles.eventTitle, {color: colors.text}]}>
+              Men's woodworking session
+            </Text>
+            <Text style={[styles.eventTime, { color: colors.text }]}>
+              03:00 PM · 01/01/2026
+            </Text>
+          </View>
+
+        </View>
+
+      </ScrollView>
+
+      
+      <View style={[
+        styles.navBar,
+        {backgroundColor: colors.card}
+      ]}>
+
+
+        <TouchableOpacity
+          
+        style={[
+          styles.navButton,
+          {
+            backgroundColor: darkMode ? '#2a2a2a' : '#ffffff',
+            borderColor: darkMode ? '#555' : '#000',
+          }
+        ]}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={[styles.navText, { color: colors.text }]}>Home</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+
+        style={[
+          styles.navButton,
+          {
+            backgroundColor: darkMode ? '#2a2a2a' : '#ffffff',
+            borderColor: darkMode ? '#555' : '#000',
+          }
+        ]}
+         onPress={() => navigation.navigate('TaskList')}>
+          <Text style={[styles.navText, { color: colors.text }]}>Events</Text>
+        </TouchableOpacity>
+
+        {/*
+        <TouchableOpacity
+          style={styles.navButton}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.navText}>Register</Text>
+        </TouchableOpacity>
+        */}
+
+        <TouchableOpacity
+          
+        style={[
+          styles.navButton,
+          {
+            backgroundColor: darkMode ? '#2a2a2a' : '#ffffff',
+            borderColor: darkMode ? '#555' : '#000',
+          }
+        ]}
+          onPress={() => navigation.navigate('Settings')}>
+          <Text style={[styles.navText, { color: colors.text }]}>Settings</Text>
+        </TouchableOpacity>
+
+      </View>
+
     </View>
   );
 }
